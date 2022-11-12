@@ -9,20 +9,15 @@ var questionField = document.querySelector(".question-box");
 var questionTheFirst = document.createElement("p");
 // Create ordered list element
 var answerList = document.createElement("ol");
-// Create list elements - Testing
-var answerOne = document.createElement("li");
-var answerTwo = document.createElement("li");
-var answerThree = document.createElement("li");
-var answerFour = document.createElement("li");
-// Create list elements - Real
+// Create list elements 
 var answerItem = document.createElement("li");
-
 
 var randomQuestion = "";
 var isComplete = false;
 var timer;
 var timerCount;
 var score = 0;
+
 // Need array(s) of questions and answers, and correct answer noted
 // Option 1
 var questionsAnswers = [["question1", ["answer1", "answer2", "answer3", "answer4"]], ["question2", ["answer1", "answer2", "answer3", "answer4"]], ["question3", ["answer1", "answer2", "answer3", "answer4"]], ["question4", ["answer1", "answer2", "answer3", "answer4"]] ];
@@ -43,12 +38,6 @@ var questionAnswers2 = [{
     answer: 1, 2, 3, 4
 }]
 */
-
-// questionTheFirst.textContent = "Is JavaScript a real thing?";
-answerOne.textContent = "First Choice";
-answerTwo.textContent = "Second Choice";
-answerThree.textContent = "Third Choice";
-answerFour.textContent = "Fourth Choice";
 
 
 // Called when page loads, looks for any existing high scores
@@ -101,6 +90,7 @@ function displayQuestion() {
     var choice1 = Math.floor(Math.random() * questionsAnswers.length) ;
     var randomQuestion = questionsAnswers[choice1];
     questionsAnswers.splice(randomQuestion, 1);
+   // var questionTheFirst = [];
     questionTheFirst.textContent = randomQuestion;
   
 // Create a question with list of answers
