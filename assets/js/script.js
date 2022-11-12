@@ -23,20 +23,20 @@ var score = 0;
 var questionsAnswers = [["question1", ["answer1", "answer2", "answer3", "answer4"]], ["question2", ["answer1", "answer2", "answer3", "answer4"]], ["question3", ["answer1", "answer2", "answer3", "answer4"]], ["question4", ["answer1", "answer2", "answer3", "answer4"]] ];
 // Option 2
 /*
-var questionAnswers2 = [{
-
-    question: 1,
-    answer: 1, 2, 3, 4
-}   {
-    question: 2,
-    answer: 1, 2, 3, 4
-}   {
-    question: 3,
-    answer: 1, 2, 3, 4
-}   {
-    question: 4,
-    answer: 1, 2, 3, 4
-}]
+var questions = [
+  {
+    question: "question 1:",
+    choices: ["option1", "option2", "option3", "option4"],
+    answer: "option3"
+  },
+ {
+    question: "question 2:",
+    choices: ["option1", "option2", "option3", "option4"],
+    answer: "option1"
+  }
+]
+And in your HTML you can have a div for questions and a div for the multiple choice answers.
+you will place the questions.question into the textcontent of the div for questions and question[i].answers[k] goes into the textcontent of the div for multiple choice answers.
 */
 
 
