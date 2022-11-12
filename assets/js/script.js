@@ -18,7 +18,7 @@ var answerFour = document.createElement("li");
 var answerItem = document.createElement("li");
 
 
-var chosenQuestion = "";
+var randomQuestion = "";
 var isComplete = false;
 var timer;
 var timerCount;
@@ -44,7 +44,7 @@ var questionAnswers2 = [{
 }]
 */
 
-questionTheFirst.textContent = "Is JavaScript a real thing?";
+// questionTheFirst.textContent = "Is JavaScript a real thing?";
 answerOne.textContent = "First Choice";
 answerTwo.textContent = "Second Choice";
 answerThree.textContent = "Third Choice";
@@ -93,36 +93,31 @@ function startTimer() {
     }, 1000);
 }
 
-/* Create a question that appears when ‘start button’ is pressed
-   Eventually, this will be an array of questions, chosen one at a time in a random order
-*/
+// Select a question that appears when ‘start button’ is pressed
+   
 function displayQuestion() {
-// Randomly select a question, for now just display a question
-/*   chosenQuestion =
-     var randomQuestion = Math.floor(Math.random() * questions.length) ;
-     var choice1 = questions[randomQuestion];
-    questions.splice(randomQuestion, 1);
-*/    
+// Randomly select a question
+ 
+    var choice1 = Math.floor(Math.random() * questionsAnswers.length) ;
+    var randomQuestion = questionsAnswers[choice1];
+    questionsAnswers.splice(randomQuestion, 1);
+    questionTheFirst.textContent = randomQuestion;
+  
 // Create a question with list of answers
     questionField.appendChild(questionTheFirst);
     questionTheFirst.appendChild(answerList);
    
-    for (var i = 0; i < questionsAnswers[i].length; i++) {
-        var chosenQuestion = questionsAnswers[i].questionsAnswers;
-        answerItem.appendChild(chosenQuestion);
+   /*
+   for (var i = 0; i < questionTheFirst[i].length; i++) {
+        var chosenQuestion = questionTheFirst[i].questionTheFirst;
+        answerItem.textContent = chosenQuestion;
+        answerList.appendChild(answerItem);
+        console.log(questionsAnswers.length);
         console.log(i);
     }
-      
-    /*
-    answerList.appendChild(answerOne);
-    answerList.appendChild(answerTwo);
-    answerList.appendChild(answerThree);
-    answerList.appendChild(answerFour);
     */
-}
-
-// Render a new li for each answer
  
+}
 
 // A listener needs to watch for answers to be clicked on
 
@@ -133,6 +128,7 @@ function displayQuestion() {
 startButton.addEventListener("click", startQuiz);
 console.log(startButton);
 console.log(startTimer);
+
 
 // Create a condition when the timer reaches zero or all questions have been answered: score is shown, initials can be entered
 
