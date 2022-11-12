@@ -9,11 +9,14 @@ var questionField = document.querySelector(".question-box");
 var questionTheFirst = document.createElement("p");
 // Create ordered list element
 var answerList = document.createElement("ol");
-// Create list elements
+// Create list elements - Testing
 var answerOne = document.createElement("li");
 var answerTwo = document.createElement("li");
 var answerThree = document.createElement("li");
 var answerFour = document.createElement("li");
+// Create list elements - Real
+var answerItem = document.createElement("li");
+
 
 var chosenQuestion = "";
 var isComplete = false;
@@ -21,7 +24,25 @@ var timer;
 var timerCount;
 var score = 0;
 // Need array(s) of questions and answers, and correct answer noted
-var questions = [1, 2, 3, 4, 5, 6, 7, 8];
+// Option 1
+var questionsAnswers = [["question1", ["answer1", "answer2", "answer3", "answer4"]], ["question2", ["answer1", "answer2", "answer3", "answer4"]], ["question3", ["answer1", "answer2", "answer3", "answer4"]], ["question4", ["answer1", "answer2", "answer3", "answer4"]] ];
+// Option 2
+/*
+var questionAnswers2 = [{
+
+    question: 1,
+    answer: 1, 2, 3, 4
+}   {
+    question: 2,
+    answer: 1, 2, 3, 4
+}   {
+    question: 3,
+    answer: 1, 2, 3, 4
+}   {
+    question: 4,
+    answer: 1, 2, 3, 4
+}]
+*/
 
 questionTheFirst.textContent = "Is JavaScript a real thing?";
 answerOne.textContent = "First Choice";
@@ -85,11 +106,23 @@ function displayQuestion() {
 // Create a question with list of answers
     questionField.appendChild(questionTheFirst);
     questionTheFirst.appendChild(answerList);
+   
+    for (var i = 0; i < questionsAnswers[i].length; i++) {
+        var chosenQuestion = questionsAnswers[i].questionsAnswers;
+        answerItem.appendChild(chosenQuestion);
+        console.log(i);
+    }
+      
+    /*
     answerList.appendChild(answerOne);
     answerList.appendChild(answerTwo);
     answerList.appendChild(answerThree);
     answerList.appendChild(answerFour);
+    */
 }
+
+// Render a new li for each answer
+ 
 
 // A listener needs to watch for answers to be clicked on
 
