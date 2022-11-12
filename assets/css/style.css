@@ -1,0 +1,56 @@
+/* color scheme sourced from http://khroma.co/generator/ */
+
+:root {
+    --moon-mist: #dedeca;
+    --antique-bronze: #7d4408;
+    --tana: #d7d3b6;
+    --irish-coffee: #553f26;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    color: var(--irish-coffee);
+    font-weight: 550;
+    background-color: var(--moon-mist);
+    font-family: 'Didot', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+   
+}
+
+header {
+    text-align: center;
+    background-color: var(--irish-coffee);
+    color: var(--tana);
+    width: 100%;
+    border-bottom: 5px solid var(--moon-mist);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 20px;
+
+}
+
+.start-button {
+    padding: 14px 40px;
+    border-radius: 8px;
+    font-size: 24px;
+    background-color: #008CBA;
+}
+
