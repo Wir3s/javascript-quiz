@@ -7,6 +7,7 @@ var highScore = document.querySelector(".high-score");
 var questionField = document.querySelector(".question-box");
 var answerField = document.querySelector(".answer-box");
 var choicesList = document.querySelector(".oL")
+
 // Create question field or array or something!
 var questionTheFirst = document.createElement("p");
 // Create list elements 
@@ -108,11 +109,12 @@ function selectQuestion() {
     questionField.appendChild(questionTheFirst);
 
 // Display Choices
+    choicesList.innerHTML = "";
     choicesLength = randomQuestion.choices.length;
             for (var i = 0; i < choicesLength; i++) {
-                //var randomChoices = randomQuestion.choices[i];
-                //answerItem.textContent = randomChoices;
-                answerItem.textContent = randomQuestion.choices[i];
+                var listGen = randomQuestion.choices[i];
+
+                answerItem.textContent = listGen;
                 choicesList.appendChild(answerItem);
                 }
               
