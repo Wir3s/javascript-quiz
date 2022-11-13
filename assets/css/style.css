@@ -47,6 +47,10 @@ main {
 
 }
 
+ol {
+    display: block;
+}
+
 .start-button {
     padding: 14px 40px;
     border-radius: 8px;

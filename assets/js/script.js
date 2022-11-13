@@ -5,12 +5,13 @@ var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
 var highScore = document.querySelector(".high-score");
 var questionField = document.querySelector(".question-box");
+var answerField = document.querySelector(".answer-box");
+var choicesList = document.querySelector(".oL")
 // Create question field or array or something!
 var questionTheFirst = document.createElement("p");
-// Create ordered list element
-var answerList = document.createElement("ol");
 // Create list elements 
 var answerItem = document.createElement("li");
+
 
 var randomQuestion = "";
 var isComplete = false;
@@ -18,23 +19,34 @@ var timer;
 var timerCount;
 var score = 0;
 
-// Need array(s) of questions and answers, and correct answer noted
+// Array(s) of questions and answers, and correct answer noted
 // Option 1
-var questionsAnswers = [["question1", ["answer1", "answer2", "answer3", "answer4"]], ["question2", ["answer1", "answer2", "answer3", "answer4"]], ["question3", ["answer1", "answer2", "answer3", "answer4"]], ["question4", ["answer1", "answer2", "answer3", "answer4"]] ];
+// var questionsAnswers = [["question1", ["answer1", "answer2", "answer3", "answer4"]], ["question2", ["answer1", "answer2", "answer3", "answer4"]], ["question3", ["answer1", "answer2", "answer3", "answer4"]], ["question4", ["answer1", "answer2", "answer3", "answer4"]] ];
 // Option 2
-/*
-var questions = [
+
+var questionsAnswers = [
   {
-    question: "question 1:",
+    question: "question 1",
     choices: ["option1", "option2", "option3", "option4"],
     answer: "option3"
   },
  {
-    question: "question 2:",
+    question: "question 2",
     choices: ["option1", "option2", "option3", "option4"],
     answer: "option1"
-  }
-]
+  },
+  {
+    question: "question 3",
+    choices: ["option1", "option2", "option3", "option4"],
+    answer: "option1"
+  },
+  {
+    question: "question 4",
+    choices: ["option1", "option2", "option3", "option4"],
+    answer: "option1"
+}]
+
+/*
 And in your HTML you can have a div for questions and a div for the multiple choice answers.
 you will place the questions.question into the textcontent of the div for questions and question[i].answers[k] goes into the textcontent of the div for multiple choice answers.
 */
@@ -50,7 +62,7 @@ function startQuiz() {
     timerCount = 90;
     // Hide start button when quiz begins
     startButton.style.display = "none";
-    displayQuestion()
+    selectQuestion()
     startTimer()
     }
 
@@ -84,30 +96,33 @@ function startTimer() {
 
 // Select a question that appears when ‘start button’ is pressed
    
-function displayQuestion() {
+function selectQuestion() {
 // Randomly select a question
  
-    var choice1 = Math.floor(Math.random() * questionsAnswers.length) ;
+    var choice1 = Math.floor(Math.random() * questionsAnswers.length);
     var randomQuestion = questionsAnswers[choice1];
     questionsAnswers.splice(randomQuestion, 1);
-   // var questionTheFirst = [];
-    questionTheFirst.textContent = randomQuestion;
-  
-// Create a question with list of answers
+    console.log(randomQuestion);
+    questionTheFirst.textContent = randomQuestion.question;
+    console.log(questionField);
     questionField.appendChild(questionTheFirst);
-    questionTheFirst.appendChild(answerList);
-   
-   /*
-   for (var i = 0; i < questionTheFirst[i].length; i++) {
-        var chosenQuestion = questionTheFirst[i].questionTheFirst;
-        answerItem.textContent = chosenQuestion;
-        answerList.appendChild(answerItem);
-        console.log(questionsAnswers.length);
-        console.log(i);
+
+// Display Choices
+    choicesLength = randomQuestion.choices.length;
+            for (var i = 0; i < choicesLength; i++) {
+                //var randomChoices = randomQuestion.choices[i];
+                //answerItem.textContent = randomChoices;
+                answerItem.textContent = randomQuestion.choices[i];
+                choicesList.appendChild(answerItem);
+                }
+              
+                console.log(answerItem);
+                console.log(randomQuestion.choices.length);
     }
-    */
- 
-}
+   
+   
+    
+    
 
 // A listener needs to watch for answers to be clicked on
 
