@@ -39,7 +39,7 @@ header {
 
 main {
     display: flex;
-    flex-direction: row;
+    
     align-content: center;
     justify-content: center;
     flex-wrap: wrap;
@@ -47,8 +47,22 @@ main {
 
 }
 
-ol {
-    display: block;
+.question-box {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    
+    
+}
+
+
+
+.answer-box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 10px;
+    
 }
 
 .start-button {
