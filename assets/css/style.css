@@ -39,7 +39,6 @@ header {
 
 main {
     display: flex;
-    
     align-content: center;
     justify-content: center;
     flex-wrap: wrap;
@@ -47,12 +46,19 @@ main {
 
 }
 
+#wrapper {
+
+    background-color: #1e1203;
+    padding: 40px 100px;
+    color:#d7d3b6;
+    display: none;
+    border-radius: 25px;
+    align-content: space-between;
+}
+
 .question-box {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    
-    
+
+   
 }
 
 
@@ -61,8 +67,14 @@ main {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    padding: 10px;
     
+    
+   
+    }
+
+.answerButtons:hover {
+    background-color: #5b360a;
+
 }
 
 .start-button {
@@ -71,4 +83,6 @@ main {
     font-size: 24px;
     background-color: #008CBA;
 }
+
+
 

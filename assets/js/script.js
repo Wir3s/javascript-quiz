@@ -2,9 +2,11 @@
 
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
-var highScore = document.querySelector(".high-score");
+var highScoreDisplay = document.querySelector(".high-score");
+var wrapperBox = document.querySelector("#wrapper");
 var questionField = document.querySelector(".question-box");
 var answerField = document.querySelector(".answer-box");
+var answerFieldButtons = document.querySelectorAll(".answer-box button");
 
 // Create question field
 var questionTheFirst = document.createElement("p");
@@ -14,7 +16,8 @@ var randomQuestion = "";
 var isComplete = false;
 var timer;
 var timerCount;
-var score = 0;
+var highScore = 0;
+var initials = "";
 
 // Array(s) of questions and answers, and correct answer noted
 
@@ -50,7 +53,7 @@ next time you call the function to get a new question the currentQuestionObj wil
 
 // Called when page loads, looks for any existing high scores
 function init() {
-  getHighScores();
+  getHighScore();
 }
 
 // The startQuiz function is called when the start button is clicked
@@ -58,9 +61,36 @@ function startQuiz() {
   timerCount = 90;
   // Hide start button when quiz begins
   startButton.style.display = "none";
+  wrapperBox.style.display = "block";
   selectQuestion();
   startTimer();
 }
+
+/* Condition when all questions are answered 
+function quizCompleted() {
+  initials = prompt("Enter your initials");
+  startButton.disabled = false;
+  setHighScore()
+  }
+
+function setHighScore() {
+  highScore = timerCount;
+  localStorage.setItem("highScore", highScore);
+  localStorage.setItem("initials", initials);
+}
+
+function getHighScore() {
+  // Get store high score from client storage, if one exists
+  var storedScore = localStorage.getItem("highScore");
+  // If a stored score doesn't exist, set counter to 0
+  if (storedScore === null) {
+    highScore = 0;
+  } else {
+  highScore = storedScore;
+  }
+  highScoreDisplay = highScore;
+}
+*/
 
 //  Timer begins counting down when start button is pressed
 //  TImer will need to lose extra time when an incorrect answer is given
@@ -108,6 +138,7 @@ function selectQuestion() {
     answerItem.textContent = listGen;
     // set attributes on buttons
     answerItem.setAttribute("name", listGen);
+    answerItem.setAttribute("class", "answerButtons");
 
     // Check if answer is correct, set value based on response
     if (correctAnswer === answerItem.name) {
@@ -117,30 +148,33 @@ function selectQuestion() {
     }
     // Adds buttons to answer container
     answerField.appendChild(answerItem);
+
+    console.log(answerItem);
+    console.log(answerField);
     // Add event listener to buttons
-    answerItem.addEventListener("click", function () {
-      // if button clicked has value of 'true'
-      // if button clicked has value of 'false'
-      console.log(answerItem);
-    });
+    // answerField.addEventListener("click", function (event) {
+    // if button clicked has value of 'true'
+
+    // if button clicked has value of 'false'
+    //   event.stopPropagation();
+
+    // });
   }
 }
 
 // A listener needs to watch for answers to be clicked on
+/*
+answerFieldButtons.addEventListener("click", checkAnswer);
+
+function checkAnswer() {
+  if (answerItem.value === "false") {
+    timerCount--;
+  }
+  selectQuestion();
+}
+*/
 
 // Create a condition when the timer reaches zero or all questions have been answered: score is shown, initials can be entered
-
-// When all questions have been answered, assign a score based on time left
-// A point for each second, should work, timer will equal score
-
-// Update score and set score to client storage
-
-/* function setHighScore() {
-    highScore.textCOntent = score;
-    localStorage.setItem("highscore", score);
-}
-
-*/
 
 // Attaches event listener to start button to call startQuiz function on click
 
