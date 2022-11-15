@@ -119,7 +119,6 @@ function startTimer() {
 }
 
 // Select a question that appears when ‘start button’ is pressed
-
 function selectQuestion() {
   // Randomly select a question
   var choice1 = Math.floor(Math.random() * questionsAnswers.length);
@@ -149,26 +148,31 @@ function selectQuestion() {
     // Adds buttons to answer container
     answerField.appendChild(answerItem);
 
-    console.log(answerItem);
-    console.log(answerField);
+    //  console.log(answerItem);
+    // console.log(answerField);
     // Add event listener to buttons
-    // answerField.addEventListener("click", function (event) {
-    // if button clicked has value of 'true'
+    answerItem.addEventListener("click", function (event) {
+      // if button clicked has value of 'true'
+      if (answerItem.value === "false") {
+        timerCount--;
+        window.alert("That is NOT correct!");
+      } else {
+        window.alert("Correct!");
+      }
+      // if button clicked has value of 'false'
+      event.stopPropagation();
 
-    // if button clicked has value of 'false'
-    //   event.stopPropagation();
-
-    // });
+      console.log(event.target);
+    });
   }
 }
-
-// A listener needs to watch for answers to be clicked on
 /*
-answerFieldButtons.addEventListener("click", checkAnswer);
-
 function checkAnswer() {
   if (answerItem.value === "false") {
     timerCount--;
+    window.alert("That is NOT correct!");
+  } else {
+    window.alert("Correct!");
   }
   selectQuestion();
 }
