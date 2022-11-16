@@ -44,13 +44,6 @@ var questionsAnswers = [
   // },
 ];
 
-/*
-var currentQuestionIndex = 0
-var currentQuestionObj = questionArrays[currentQuestionIndex]
-and then when you click on a choice button you could curentQuestionIndex++
-next time you call the function to get a new question the currentQuestionObj will be the next object in the array
-*/
-
 // Called when page loads, looks for any existing high scores
 function init() {
   getHighScore();
@@ -133,21 +126,13 @@ function startTimer() {
   timer = setInterval(function () {
     timerCount--;
     timerElement.textContent = timerCount;
-    /* Set condition if all questions have been answered
-         if (timerCount >=0) {
-             if (isComplete && timerCount > 0) {
-                clearInterval(timer);
-                quizCompleted();
-        }
-            }
-
-    */
 
     // Tests if time has run out
     if (timerCount === 0) {
       // Clear interval
       clearInterval(timer);
-      // Do something else, display score, prompt initials, etc
+      // End quiz
+      quizCompleted();
     }
   }, 1000);
 }
@@ -157,7 +142,6 @@ function selectQuestion() {
   var choice1 = Math.floor(Math.random() * questionsAnswers.length);
   var randomQuestion = questionsAnswers[choice1];
   questionsAnswers.splice(questionsAnswers.indexOf(randomQuestion), 1);
-  console.log(questionsAnswers);
   questionTheFirst.textContent = randomQuestion.question;
   questionField.appendChild(questionTheFirst);
   answerField.innerHTML = "";
@@ -182,41 +166,29 @@ function selectQuestion() {
     // Adds buttons to answer container
     answerField.appendChild(answerItem);
 
-    //  console.log(answerItem);
-    // console.log(answerField);
     // Add event listener to buttons
     answerItem.addEventListener("click", function (event) {
-      event.stopPropagation();
-      // if button clicked has value of 'false'
-      if (answerItem.value == "true") {
+      //event.stopPropagation();
+      console.log(event.target);
+      /*
+      // if button clicked has value of 'true'
+      if (answerItem.hasAttribute("value")) {
         window.alert("Correct!");
       } else {
-        // if button clicked has value of 'true'
-
+        // if button clicked has value of 'false'
         timerCount -= 5;
         window.alert("That is NOT correct!");
       }
+
       if (questionsAnswers.length === 0) {
         quizCompleted();
       } else {
         selectQuestion();
       }
+      */
     });
   }
 }
-/*
-function checkAnswer() {
-  if (answerItem.value === "false") {
-    timerCount--;
-    window.alert("That is NOT correct!");
-  } else {
-    window.alert("Correct!");
-  }
-  selectQuestion();
-}
-*/
-
-// Create a condition when the timer reaches zero or all questions have been answered: score is shown, initials can be entered
 
 // Attaches event listener to start button to call startQuiz function on click
 
