@@ -160,24 +160,23 @@ function selectQuestion() {
     // Check if answer is correct, set value based on response
     if (correctAnswer === answerItem.name) {
       answerItem.setAttribute("value", true);
+    } else {
+      answerItem.setAttribute("value", false);
     }
-    //else {
-    //  answerItem.setAttribute("value", false);
-    //}
     // Adds buttons to answer container
     answerField.appendChild(answerItem);
 
     // Add event listener to buttons
     answerItem.addEventListener("click", function (event) {
-      //event.stopPropagation();
       // document.getElementsByClassName("answerButtons").onclick = function () {
       console.log(event.target);
-
+      event.stopPropagation();
       console.log(event.target);
+      //  let truthyness = answerItem.getAttribute("value")
 
       // if button clicked has value of 'true'
       /*
-      if (answerItem.hasAttribute("value")) {
+      if truthyness = "true" {
         window.alert("Correct!");
       } else {
         // if button clicked has value of 'false'
