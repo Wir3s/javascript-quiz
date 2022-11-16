@@ -27,21 +27,21 @@ var questionsAnswers = [
     choices: ["option1", "option2", "option3", "option4"],
     answer: "option3",
   },
-  {
-    question: "question 2",
-    choices: ["option1", "option2", "option3", "option4"],
-    answer: "option1",
-  },
-  {
-    question: "question 3",
-    choices: ["option1", "option2", "option3", "option4"],
-    answer: "option1",
-  },
-  {
-    question: "question 4",
-    choices: ["option1", "option2", "option3", "option4"],
-    answer: "option1",
-  },
+  // {
+  //   question: "question 2",
+  //   choices: ["option1", "option2", "option3", "option4"],
+  //   answer: "option1",
+  // },
+  // {
+  //   question: "question 3",
+  //   choices: ["option1", "option2", "option3", "option4"],
+  //   answer: "option1",
+  // },
+  // {
+  //   question: "question 4",
+  //   choices: ["option1", "option2", "option3", "option4"],
+  //   answer: "option1",
+  // },
 ];
 
 /*
@@ -66,31 +66,65 @@ function startQuiz() {
   startTimer();
 }
 
-/* Condition when all questions are answered 
-function quizCompleted() {
-  initials = prompt("Enter your initials");
-  startButton.disabled = false;
-  setHighScore()
+function handleFormSubmit(event) {
+  event.preventDefault();
+  console.log(event.target);
+  var person = document.getElementById("initials").value;
+  if (!person) {
+    alert("You must enter your initials");
+    return;
   }
+  let object = {
+    name: person,
+    score: timerCount,
+  };
+  addToStorage(object);
+}
 
-function setHighScore() {
-  highScore = timerCount;
-  localStorage.setItem("highScore", highScore);
-  localStorage.setItem("initials", initials);
+// Condition when all questions are answered
+function quizCompleted() {
+  alert("Quiz Over");
+  var quizOverTemplate = document.getElementById("quiz-over");
+  quizOverTemplate.classList.remove("hide");
+  wrapperBox.style.display = "none";
+  clearInterval(timer);
+  getHighScore();
+  document.getElementById("form").addEventListener("submit", handleFormSubmit);
+}
+
+function addToStorage(newScore) {
+  console.log("adding to storage");
+  var history = JSON.parse(localStorage.getItem("highscores")) || [];
+  console.log(history);
+  history.push(newScore);
+  localStorage.setItem("highscores", JSON.stringify(history));
+  getHighScore();
+}
+function logButton(event) {
+  event.preventDefault();
+  console.log("BUTTON PRESSED");
+  console.log(event.target);
 }
 
 function getHighScore() {
   // Get store high score from client storage, if one exists
-  var storedScore = localStorage.getItem("highScore");
+  var history = JSON.parse(localStorage.getItem("highscores")) || [];
   // If a stored score doesn't exist, set counter to 0
-  if (storedScore === null) {
-    highScore = 0;
-  } else {
-  highScore = storedScore;
+  var pastScoresEl = document.getElementById("past-scores");
+  pastScoresEl.innerHTML = "";
+  for (const log of history) {
+    pastScoresEl.innerHTML += `<li> ${log.name} : ${log.score}`;
   }
-  highScoreDisplay = highScore;
-}
+  /*  var allButtons = document.getElementsByTagName('button')
+  console.log(allButtons)
+  for(const button of allButtons){
+    if(button.hasAttribute("historic")){
+      console.log(button)
+      button.addEventListener('click', logButton)
+    }
+  }
 */
+}
 
 //  Timer begins counting down when start button is pressed
 //  TImer will need to lose extra time when an incorrect answer is given
@@ -117,16 +151,16 @@ function startTimer() {
     }
   }, 1000);
 }
-
 // Select a question that appears when ‘start button’ is pressed
 function selectQuestion() {
   // Randomly select a question
   var choice1 = Math.floor(Math.random() * questionsAnswers.length);
   var randomQuestion = questionsAnswers[choice1];
-  questionsAnswers.splice(randomQuestion, 1);
+  questionsAnswers.splice(questionsAnswers.indexOf(randomQuestion), 1);
+  console.log(questionsAnswers);
   questionTheFirst.textContent = randomQuestion.question;
   questionField.appendChild(questionTheFirst);
-
+  answerField.innerHTML = "";
   // Display Choices
   choicesLength = randomQuestion.choices.length;
   for (var i = 0; i < choicesLength; i++) {
@@ -152,17 +186,21 @@ function selectQuestion() {
     // console.log(answerField);
     // Add event listener to buttons
     answerItem.addEventListener("click", function (event) {
-      // if button clicked has value of 'true'
-      if (answerItem.value === "false") {
-        timerCount--;
-        window.alert("That is NOT correct!");
-      } else {
-        window.alert("Correct!");
-      }
-      // if button clicked has value of 'false'
       event.stopPropagation();
+      // if button clicked has value of 'false'
+      if (answerItem.value == "true") {
+        window.alert("Correct!");
+      } else {
+        // if button clicked has value of 'true'
 
-      console.log(event.target);
+        timerCount -= 5;
+        window.alert("That is NOT correct!");
+      }
+      if (questionsAnswers.length === 0) {
+        quizCompleted();
+      } else {
+        selectQuestion();
+      }
     });
   }
 }
