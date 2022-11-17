@@ -48,6 +48,16 @@ var questionsAnswers = [
     choices: ["Camel case", "Crazy case", "Brief case", "Casey case"],
     answer: "Camel case",
   },
+  {
+    question: "Which company developed JavaScript?",
+    choices: ["Musk Melon", "Gates Empire", "Scorched Earth", "Netscape"],
+    answer: "Netscape",
+  },
+  {
+    question: "What command displays a message to the console?",
+    choices: ["Show Me Text", "console.log", "return", "GIVE"],
+    answer: "console.log",
+  },
 ];
 
 // Called when page loads, looks for any existing high scores
@@ -64,10 +74,9 @@ function startQuiz() {
   selectQuestion();
   startTimer();
 }
-
+// Form for entering intials
 function handleFormSubmit(event) {
   event.preventDefault();
-  console.log(event.target);
   var person = document.getElementById("initials").value;
   if (!person) {
     alert("You must enter your initials");
@@ -92,9 +101,7 @@ function quizCompleted() {
 }
 
 function addToStorage(newScore) {
-  console.log("adding to storage");
   var history = JSON.parse(localStorage.getItem("highscores")) || [];
-  console.log(history);
   history.push(newScore);
   localStorage.setItem("highscores", JSON.stringify(history));
   getHighScore();
@@ -165,22 +172,18 @@ function selectQuestion() {
 
     // Add event listener to buttons
     answerItem.addEventListener("click", function (event) {
-      // document.getElementsByClassName("answerButtons").onclick = function () {
-      console.log(event.target);
       event.stopPropagation();
-      console.log(event.target.innerHTML);
       buttonText = event.target.innerHTML;
-      console.log(buttonText);
       // if button clicked has value of 'true'
 
       if (buttonText === correctAnswer) {
         window.alert("Correct!");
       } else {
         // if button clicked has value of 'false'
-        timerCount -= 5;
+        timerCount -= 15;
         window.alert("That is NOT correct!");
       }
-
+      // If all the questions have been answered
       if (questionsAnswers.length === 0) {
         quizCompleted();
       } else {
