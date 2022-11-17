@@ -13,6 +13,8 @@ N/A
 To use, simply visit:
 Click the 'Start' button and the quiz will begin.
 
+![Screenshot](./assets/javascript-quiz-screenshot.jpg)
+
 ## Credit
 
 An instructional tutor, Alexis Gonzalez, was exceedingly helpful in the final stages of the project providing helpful demonstrations of various functions.
