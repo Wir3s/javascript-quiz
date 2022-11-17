@@ -10,7 +10,7 @@ N/A
 
 ## Usage
 
-To use, simply visit:
+To use, simply visit: https://wir3s.github.io/javascript-quiz/
 Click the 'Start' button and the quiz will begin.
 
 ![Screenshot](./assets/javascript-quiz-screenshot.jpg)
