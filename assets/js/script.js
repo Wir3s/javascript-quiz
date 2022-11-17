@@ -23,25 +23,31 @@ var initials = "";
 
 var questionsAnswers = [
   {
-    question: "question 1",
-    choices: ["option1", "option2", "option3", "option4"],
-    answer: "option3",
+    question: "What number accesses the second item in an array?",
+    choices: ["0", "1", "2", "3"],
+    answer: "1",
   },
-  // {
-  //   question: "question 2",
-  //   choices: ["option1", "option2", "option3", "option4"],
-  //   answer: "option1",
-  // },
-  // {
-  //   question: "question 3",
-  //   choices: ["option1", "option2", "option3", "option4"],
-  //   answer: "option1",
-  // },
-  // {
-  //   question: "question 4",
-  //   choices: ["option1", "option2", "option3", "option4"],
-  //   answer: "option1",
-  // },
+  {
+    question: "What tag name should your JavaScript file be inside?",
+    choices: ["header", "head", "body", "script"],
+    answer: "script",
+  },
+  {
+    question: "How do you delcare a variable?",
+    choices: ["variable", "makeVariable", "giveMeAVariableNow", "var"],
+    answer: "var",
+  },
+  {
+    question: "How many equal signs should be used for a very true statement?",
+    choices: ["1", "2", "3", "4"],
+    answer: "3",
+  },
+  {
+    question:
+      "What is the case called with a lower then capital for subsequent words?",
+    choices: ["Camel case", "Crazy case", "Brief case", "Casey case"],
+    answer: "Camel case",
+  },
 ];
 
 // Called when page loads, looks for any existing high scores
@@ -108,15 +114,6 @@ function getHighScore() {
   for (const log of history) {
     pastScoresEl.innerHTML += `<li> ${log.name} : ${log.score}`;
   }
-  /*  var allButtons = document.getElementsByTagName('button')
-  console.log(allButtons)
-  for(const button of allButtons){
-    if(button.hasAttribute("historic")){
-      console.log(button)
-      button.addEventListener('click', logButton)
-    }
-  }
-*/
 }
 
 //  Timer begins counting down when start button is pressed
@@ -171,12 +168,12 @@ function selectQuestion() {
       // document.getElementsByClassName("answerButtons").onclick = function () {
       console.log(event.target);
       event.stopPropagation();
-      console.log(event.target);
-      //  let truthyness = answerItem.getAttribute("value")
-
+      console.log(event.target.innerHTML);
+      buttonText = event.target.innerHTML;
+      console.log(buttonText);
       // if button clicked has value of 'true'
-      /*
-      if truthyness = "true" {
+
+      if (buttonText === correctAnswer) {
         window.alert("Correct!");
       } else {
         // if button clicked has value of 'false'
@@ -189,7 +186,6 @@ function selectQuestion() {
       } else {
         selectQuestion();
       }
-      */
     });
   }
 }
